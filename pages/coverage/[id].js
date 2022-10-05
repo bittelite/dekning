@@ -70,7 +70,7 @@ function Coverage({ post }) {
                   AKRS
                 </div>
                 <div className="w-full flex-none text-sm font-medium text-slate-700 mt-2">
-                 45-85" skjermer
+                 45-85`&quot;` skjermer
                 </div>
                 <p className="text-sm text-slate-700">
                   Strategiske plasseringer og bred dekning.
@@ -103,7 +103,7 @@ function Coverage({ post }) {
                   3AG
                 </div>
                 <div className="w-full flex-none text-sm font-medium text-slate-700 mt-2">
-                  55" skjerm
+                  55`&quot;` skjerm
                 </div>
                 <p className="text-sm text-slate-700">
                   Stor og lyssterk skjerm av høyeste kvalitet
@@ -136,7 +136,7 @@ function Coverage({ post }) {
                   3AG
                 </div>
                 <div className="w-full flex-none text-sm font-medium text-slate-700 mt-2">
-                  55" skjerm
+                  55`&quot;` skjerm
                 </div>
                 <p className="text-sm text-slate-700">
                   Stor og lyssterk skjerm av høyeste kvalitet
@@ -169,7 +169,7 @@ function Coverage({ post }) {
                   3AG
                 </div>
                 <div className="w-full flex-none text-sm font-medium text-slate-700 mt-2">
-                  55" skjerm
+                  55`&quot;` skjerm
                 </div>
                 <p className="text-sm text-slate-700">
                   Stor og lyssterk skjerm av høyeste kvalitet

@@ -34,7 +34,7 @@ export default function Home({ postsList }) {
         <tbody className='bg-white striped'>
 
           {postsList.map(post => (
-            <Link href={ '/coverage/' + post.id.toString() }>
+            <Link href={ '/coverage/' + post.id.toString() } key={post.id}>
             <tr key={post.id}>
               <td className='border-b border-slate-100 p-4 pl-8 text-slate-500'>
                 <img src={ iconUrl + post.ikon} className='-mb-5 -mx-4' />
