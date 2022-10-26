@@ -13,6 +13,7 @@ export const getStaticProps = async () => {
     props: {
       postsList: posts,
     },
+    revalidate: 10,
   }
 }
 
@@ -36,7 +37,7 @@ export default function Home({ postsList }) {
 
           {postsList.map(post => (
             <Link href={ '/visningssteder/' + post.id.toString() } key={post.acf.id}>
-            <tr key={post.acf.id}>
+            <tr>
               <td className='border-b border-slate-100 p-4 pl-8 text-slate-500'>
                 {post.acf.type}
               </td>
