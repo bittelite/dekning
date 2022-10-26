@@ -21,7 +21,7 @@ export default function Home({ postsList }) {
   const iconUrl = "https://reklameservice.no/wp-content/plugins/googlemapsproject4/images/rsicons/tableicons/";
 
   return (
-    <div className='container mx-auto px-2'>
+    <div className='container mx-auto px-2 max-w-7xl'>
      <h1 className="text-3xl font-bold pt-4 pb-6">Visningssteder</h1>
      <table className='table-auto w-full border-spacing-2 text-sm lg:text-base xl:text-lg'>
       <thead>
@@ -37,7 +37,7 @@ export default function Home({ postsList }) {
 
           {postsList.map(post => (
             <Link href={ '/visningssteder/' + post.id.toString() } key={post.acf.id}>
-            <tr>
+            <tr key={post.acf.id}>
               <td className='border-b border-slate-100 p-4 pl-8 text-slate-500'>
                 {post.acf.type}
               </td>

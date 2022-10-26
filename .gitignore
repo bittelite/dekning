@@ -34,3 +34,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+pages/visningssteder/[id].js
+pages/_old_index.js
+pages/visningssteder/[id] copy.js
+dataConst.js
+data.json
+coverage.js

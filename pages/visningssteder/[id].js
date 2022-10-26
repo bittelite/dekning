@@ -92,7 +92,7 @@ export async function getStaticProps({params}) {
   const post = await res.json();
   const res2 = await fetch(`https://reklameservice.no/wp-json/wp/v2/media?parent=${params.id}`);
   const media = await res2.json();
-  return {props: {post, media}};
+  return {props: {post, media}, revalidate: 10,};
 }
 
 export default Visningssted
