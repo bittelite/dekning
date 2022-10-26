@@ -5,12 +5,13 @@
 import Link from "next/link";
 
 export const getStaticProps = async () => {
-  const res = await fetch('https://api.npoint.io/a52a43c92f9e86ef49e2');
+  const res = await fetch('https://reklameservice.no/wp-json/wp/v2/visningssteder');
   const posts = await res.json();
+  console.log(posts[0].acf);
 
   return {
     props: {
-      postsList: posts.posts,
+      postsList: posts,
     },
   }
 }
@@ -20,7 +21,7 @@ export default function Home({ postsList }) {
 
   return (
     <div className='container mx-auto px-2'>
-     <h1 className="text-3xl font-bold pt-4 pb-6">Dekningskart</h1>
+     <h1 className="text-3xl font-bold pt-4 pb-6">Visningssteder</h1>
      <table className='table-auto w-full border-spacing-2 text-sm lg:text-base xl:text-lg'>
       <thead>
         <tr className='text-left'>
@@ -34,15 +35,15 @@ export default function Home({ postsList }) {
         <tbody className='bg-white striped'>
 
           {postsList.map(post => (
-            <Link href={ '/coverage/' + post.id.toString() } key={post.id}>
-            <tr key={post.id}>
+            <Link href={ '/visningssteder/' + post.id.toString() } key={post.acf.id}>
+            <tr key={post.acf.id}>
               <td className='border-b border-slate-100 p-4 pl-8 text-slate-500'>
-                <img src={ iconUrl + post.ikon} className='-mb-5 -mx-4' />
+                {post.acf.type}
               </td>
-              <td className='border-b font-medium border-slate-100 p-4 pl-8 text-slate-500'>{post.plassering}</td>
-              <td className='border-b font-medium border-slate-100 p-4 pl-8 text-slate-500'>{post.fylke}</td>
-              <td className='border-b font-medium border-slate-100 p-4 pl-8 text-slate-500'>{post.selskap}</td>
-              <td className='border-b font-medium border-slate-100 p-4 pl-8 text-slate-500 text-right'>{post.besok}</td>
+              <td className='border-b font-medium border-slate-100 p-4 pl-8 text-slate-500'>{post.title.rendered}</td>
+              <td className='border-b font-medium border-slate-100 p-4 pl-8 text-slate-500'>{post.acf.fylke}</td>
+              <td className='border-b font-medium border-slate-100 p-4 pl-8 text-slate-500'>{post.acf.selskap}</td>
+              <td className='border-b font-medium border-slate-100 p-4 pl-8 text-slate-500 text-right'>{post.acf.besokende}</td>
             </tr>
             </Link>
           ))}
