@@ -1,5 +1,11 @@
+// import Head from 'next/head'
+// import Image from 'next/image'
+//import posts from '../data';
+//import styles from '../styles/Home.module.css';
 import Link from "next/link";
-import dynamic from 'next/dynamic';
+//import Map from "Map";
+//import { Marker } from "react-leaflet";
+import dynamic from 'next/dynamic'
 
 export const getStaticProps = async () => {
   const res = await fetch('https://reklameservice.no/wp-json/wp/v2/visningssteder');
@@ -15,9 +21,13 @@ export const getStaticProps = async () => {
 
 export default function Home({ postsList }) {
   const iconUrl = "https://reklameservice.no/wp-content/plugins/googlemapsproject4/images/rsicons/tableicons/";
-  const MapWithNoSSR = dynamic(() => import('./Map'), {
-    ssr: false,
-  });
+  const Map = dynamic(
+    () => import('./Map'), // replace '@components/map' with your component's location
+    { 
+      loading: () => <p>A map is loading</p>,
+      ssr: false // This line is important. It's what prevents server-side render
+    }
+  )
 
   const searchIndex = postsList.findIndex((koordinat) => koordinat.lengdegrad);
   console.log(searchIndex);
