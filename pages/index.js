@@ -40,9 +40,9 @@ export default function Home({ postsList }) {
     <div className='container mx-auto px-2 max-w-7xl'>
      <h1 className="text-3xl font-bold pt-4 pb-6">Visningssteder</h1>
      <div className="pb-4">
-      <MapWithNoSSR>
+      <Map>
       <MultipleMarkers />
-      </MapWithNoSSR>
+      </Map>
       
      </div>
      <table className='table-auto w-full border-spacing-2 text-sm lg:text-base xl:text-lg'>
