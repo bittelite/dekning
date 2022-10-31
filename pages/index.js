@@ -1,10 +1,4 @@
-// import Head from 'next/head'
-// import Image from 'next/image'
-//import posts from '../data';
-//import styles from '../styles/Home.module.css';
 import Link from "next/link";
-//import Map from "Map";
-//import { Marker } from "react-leaflet";
 import dynamic from 'next/dynamic';
 
 export const getStaticProps = async () => {
