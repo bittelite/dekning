@@ -3,11 +3,13 @@
 //import posts from '../data';
 //import styles from '../styles/Home.module.css';
 import Link from "next/link";
+//import Map from "Map";
+//import { Marker } from "react-leaflet";
+import dynamic from 'next/dynamic';
 
 export const getStaticProps = async () => {
   const res = await fetch('https://reklameservice.no/wp-json/wp/v2/visningssteder');
   const posts = await res.json();
-  console.log(posts[0].acf);
 
   return {
     props: {
@@ -19,10 +21,26 @@ export const getStaticProps = async () => {
 
 export default function Home({ postsList }) {
   const iconUrl = "https://reklameservice.no/wp-content/plugins/googlemapsproject4/images/rsicons/tableicons/";
+  const MapWithNoSSR = dynamic(() => import('./Map'), {
+    ssr: false,
+  });
+
+  const searchIndex = postsList.findIndex((koordinat) => koordinat.lengdegrad);
+  console.log(searchIndex);
+
+  function MultipleMarkers() {
+    return <p>hei</p>
+  }
 
   return (
     <div className='container mx-auto px-2 max-w-7xl'>
      <h1 className="text-3xl font-bold pt-4 pb-6">Visningssteder</h1>
+     <div className="pb-4">
+      <MapWithNoSSR>
+      <MultipleMarkers />
+      </MapWithNoSSR>
+      
+     </div>
      <table className='table-auto w-full border-spacing-2 text-sm lg:text-base xl:text-lg'>
       <thead>
         <tr className='text-left'>

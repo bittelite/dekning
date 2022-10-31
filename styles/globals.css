@@ -17,3 +17,6 @@
     z-index: 1;
   }
 }
+li {
+  @apply list-disc ml-4;
+}
