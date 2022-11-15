@@ -7,12 +7,16 @@ function Visningssted({ post, media }) {
         <div className='relative'
         style={{
           backgroundImage: `url(${post._embedded['wp:featuredmedia'][0].source_url})`,
-          backgroundPosition: 'top center',
+          backgroundPosition: 'center center',
           backgroundRepeat: 'no-repeat',
-          backgroundSize: 'cover',
           width: 'auto',
           height: '50vh'
         }}>
+          <Link href="/">
+            <button className="h-10 px-6 font-semibold rounded-md bg-black text-white left-2 bottom-2 absolute">
+              Tilbake
+            </button>
+          </Link>
         </div>
         <div className='p-4 w-full'>
             <p className='float-right -mb-3'>
@@ -26,11 +30,11 @@ function Visningssted({ post, media }) {
             <p className='text-xl font-medium'>
               {post.acf.beskrivelse.ingress}
             </p>
-            <div className="py-6" 
-              dangerouslySetInnerHTML={{__html: post.acf.beskrivelse.tekst}}>
-            </div>
+            <p className="py-6">
+              {post.acf.beskrivelse.tekst}
+            </p>
           </div>
-          <div className='flex md:basis-1/2 gap-2 flex-row flex-wrap bg-gray-100'>
+          <div className='flex md:basis-1/2 gap-2 flex-col flex-wrap'>
             <p className="flex-1 grow">Selskap:<br />
             <span className="font-bold text-2xl">{post.acf.selskap}</span>
             </p>
@@ -49,21 +53,25 @@ function Visningssted({ post, media }) {
         {post.acf.flater.map(post => (
             <div key={post.plassnr} className="flex font-sans rounded-md bg-gray-100 flex-1">
               <div className="flex-none w-48 relative">
-                <img src={media.find(image => image.id === post.hovedbilde).source_url} alt="" className="absolute inset-0 w-full h-full rounded-l-md object-cover" loading="lazy" />
+                <img
+                  src={media.find(image => image.id === post.hovedbilde).media_details.sizes.large.source_url}
+                  alt=""
+                  className="absolute inset-0 w-full h-full rounded-l-md object-cover"
+                />
               </div>
               <form className="flex-auto p-6">
                 <div className="flex flex-wrap">
                   <h1 className="flex-auto text-lg font-semibold text-slate-900">
                     {post.type}
                   </h1>
-                  <p className="text-lg font-semibold text-slate-500">
+                  <div className="text-lg font-semibold text-slate-500">
                     {post.plassnr}
-                  </p>
-                  <p className="w-full flex-none text-sm font-medium text-slate-700 mt-2">
+                  </div>
+                  <div className="w-full flex-none text-sm font-medium text-slate-700 mt-2">
                     Format: {post.format}
-                  </p>
+                  </div>
                   <p className="text-sm text-slate-700">
-                    Plassering: {post.plassering}
+                    Strategiske plasseringer og bred dekning.
                   </p>
                 </div>
               </form>
@@ -72,7 +80,7 @@ function Visningssted({ post, media }) {
         </div>
       </div>
   );
-}
+} 
 
 export async function getStaticPaths() {
   const res = await fetch('https://reklameservice.no/wp-json/wp/v2/visningssteder');
